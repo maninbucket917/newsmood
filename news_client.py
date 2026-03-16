@@ -19,26 +19,30 @@ def get_articles(query: str, max_results: int = 20) -> list[dict]:
         q = query,
         language = "en",
         sort_by = "relevancy",
-        page_size = max_results
+        page_size = 100
     )
 
     articles = []
 
-    # Scan through the articles and extract relevant information for each article
-    for article in response["articles"]:
-        title = article.get("title") or ""
-        description = article.get("description") or ""
-        url = article.get("url") or ""
+    # Scan the page to skip entries with no titles or removed content and stop once enough articles are collected
+    for article in response.get("articles", []):
+        if len(articles) >= max_results:
+            break
 
-        # Skip articles with missing titles
-        if not title:
+        title = (article.get("title") or "").strip()
+        description = (article.get("description") or "").strip()
+        url = (article.get("url") or "").strip()
+        source = (article.get("source", {}).get("name") or "").strip()
+
+        is_removed = title.lower() == "[removed]" or description.lower() == "[removed]"
+        if not title or not url or is_removed:
             continue
 
         articles.append({
             "title": title,
             "description": description,
             "url": url,
-            "source": article.get("source", {}).get("name", "")
+            "source": source
         })
 
     return articles
