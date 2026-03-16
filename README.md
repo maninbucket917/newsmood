@@ -4,6 +4,14 @@ A news sentiment analysis tool built with Streamlit, HuggingFace Transformers, a
 
 NewsMood fetches recent news articles on a topic of your choice and runs each one through a machine learning sentiment model. Results are displayed as a donut chart showing the overall sentiment breakdown, along with the top articles per category with confidence scores.
 
+## Screenshots
+
+<img width="1000" height="600" alt="Image" src="https://github.com/user-attachments/assets/35f7f61c-77b7-4428-9e73-c9abed8e1797" />
+
+<img width="1000" height="600" alt="Image" src="https://github.com/user-attachments/assets/9cd0b76f-e3fa-45ed-ad21-e1807cddcf37" />
+
+<img width="1000" height="898" alt="Image" src="https://github.com/user-attachments/assets/3b476d61-a6f7-48a6-8fce-431f67f73e03" />
+
 ## Technologies
 
 - **[Streamlit](https://streamlit.io)** - Web UI
